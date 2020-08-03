@@ -23,4 +23,46 @@ export default createGlobalStyle`
 
     font-size: 60%;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100vh;
+  }
+
+  body {
+    background-color: var(--color-background);
+  }
+
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+
+  .container {
+    width: 90vw;
+    max-width: 700px;
+  }
+
+  @media (min-width: 700px) {
+    :root {
+      font-size: 62.5%;
+    }
+  }
 `;
