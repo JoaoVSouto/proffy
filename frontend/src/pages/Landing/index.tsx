@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   PageLanding,
@@ -28,15 +29,15 @@ const Landing: React.FC = () => {
         <HeroImage src={landingImg} alt="plataforma de estudos" />
 
         <ButtonsContainer>
-          <a href="#!" className="study">
+          <Link to="/study" className="study">
             <img src={studyIcon} alt="Estudar" />
             Estudar
-          </a>
+          </Link>
 
-          <a href="#!" className="give-classes">
+          <Link to="/give-classes" className="give-classes">
             <img src={giveClassesIcon} alt="Dar aulas" />
             Dar aulas
-          </a>
+          </Link>
         </ButtonsContainer>
 
         <TotalConnections className="total-connections">
