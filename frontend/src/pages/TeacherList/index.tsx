@@ -1,28 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { Container, Header, TopBarContainer, HeaderContent } from './styles';
+import PageHeader from '../../components/PageHeader';
 
-import logoImg from '../../assets/images/logo.svg';
-
-import backIcon from '../../assets/images/icons/back.svg';
+import { Container } from './styles';
 
 const TeacherList: React.FC = () => {
   return (
     <Container className="container">
-      <Header>
-        <TopBarContainer>
-          <Link to="/">
-            <img src={backIcon} alt="Voltar" />
-          </Link>
-
-          <img src={logoImg} alt="Proffy" />
-        </TopBarContainer>
-
-        <HeaderContent>
-          <strong>Estes são os proffys disponíveis.</strong>
-        </HeaderContent>
-      </Header>
+      <PageHeader title="Estes são os proffys disponíveis." />
     </Container>
   );
 };
