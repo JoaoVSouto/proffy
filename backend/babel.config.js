@@ -16,6 +16,9 @@ module.exports = {
       {
         alias: {
           '@errors': './src/errors',
+          '@services': './src/services',
+          '@database': './src/database',
+          '@utils': './src/utils',
         },
       },
     ],

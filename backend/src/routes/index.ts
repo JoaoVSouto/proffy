@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
+import classesRoutes from './classes.routes';
+
 const routes = Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ ok: true });
-});
+routes.use('/classes', classesRoutes);
 
 export default routes;

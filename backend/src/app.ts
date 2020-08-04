@@ -35,6 +35,10 @@ class App {
           });
         }
 
+        if (process.env.NODE_ENV === 'development') {
+          console.log(err);
+        }
+
         return res.status(500).json({
           status: 'error',
           message: 'Internal server error',
