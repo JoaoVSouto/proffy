@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export default createGlobalStyle`
   :root {
@@ -60,7 +61,7 @@ export default createGlobalStyle`
     max-width: 700px;
   }
 
-  @media (min-width: 700px) {
+  ${up('tablet')} {
     :root {
       font-size: 62.5%;
     }

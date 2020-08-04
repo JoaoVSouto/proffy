@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
   background-color: var(--color-primary);
 
-  @media (min-width: 700px) {
+  ${up('tablet')} {
     height: 340px;
   }
 `;
@@ -33,7 +34,7 @@ export const TopBarContainer = styled.div`
     height: 1.6rem;
   }
 
-  @media (min-width: 700px) {
+  ${up('tablet')} {
     max-width: 1100px;
   }
 `;
@@ -52,7 +53,7 @@ export const HeaderContent = styled.div`
     color: var(--color-title-in-primary);
   }
 
-  @media (min-width: 700px) {
+  ${up('tablet')} {
     flex: 1;
     max-width: 740px;
     margin: 0 auto;

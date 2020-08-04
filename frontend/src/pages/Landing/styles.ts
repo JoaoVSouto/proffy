@@ -14,8 +14,8 @@ export const PageLanding = styled.div`
 `;
 
 export const PageLandingContent = styled.div`
-  ${up('lgDesktop')} {
-    max-width: 1200px !important;
+  ${up('desktop')} {
+    max-width: 1100px !important;
 
     display: grid;
     grid-template-rows: 350px 1fr;
@@ -42,7 +42,7 @@ export const LogoContainer = styled.div`
     margin-top: 0.8rem;
   }
 
-  ${up('lgDesktop')} {
+  ${up('desktop')} {
     align-self: center;
     margin: 0;
 
@@ -63,7 +63,7 @@ export const HeroImage = styled.img`
   grid-area: hero;
   width: 100%;
 
-  ${up('lgDesktop')} {
+  ${up('desktop')} {
     justify-self: end;
   }
 `;
@@ -118,7 +118,7 @@ export const ButtonsContainer = styled.div`
     }
   }
 
-  ${up('lgDesktop')} {
+  ${up('desktop')} {
     justify-content: flex-start;
 
     a {
@@ -139,7 +139,7 @@ export const TotalConnections = styled.span`
     margin-left: 0.8rem;
   }
 
-  ${up('lgDesktop')} {
+  ${up('desktop')} {
     justify-self: end;
   }
 `;
