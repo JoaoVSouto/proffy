@@ -54,6 +54,7 @@ export default createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1.6rem;
+    color: var(--color-text-base);
   }
 
   .container {
