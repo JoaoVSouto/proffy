@@ -3,10 +3,22 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw !important;
   height: 100vh;
+
+  @media (min-width: 700px) {
+    max-width: 100% !important;
+  }
 `;
 
 export const Form = styled.form`
   margin-top: 3.2rem;
+
+  @media (min-width: 700px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 16px;
+    position: absolute;
+    bottom: -28px;
+  }
 `;
 
 export const InputBlock = styled.div`
@@ -35,6 +47,12 @@ export const InputBlock = styled.div`
 
   label {
     font-size: 1.4rem;
+  }
+
+  @media (min-width: 700px) {
+    + div {
+      margin-top: 0;
+    }
   }
 `;
 
