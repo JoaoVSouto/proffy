@@ -1,6 +1,7 @@
 import 'express-async-errors';
 
 import express, { Express, Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 
 import AppError from './errors/AppError';
 
@@ -18,6 +19,7 @@ class App {
   }
 
   private middlewares() {
+    this.server.use(cors());
     this.server.use(express.json());
   }
 
