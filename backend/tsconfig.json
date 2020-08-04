@@ -20,7 +20,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@errors/*": ["./src/errors/*"]
+    }
   },
   "include": [
     "src/**/*"
