@@ -11,6 +11,10 @@ export const Container = styled.div`
 
   ${up('tablet')} {
     max-width: 100% !important;
+
+    .input-block {
+      margin-top: 0;
+    }
   }
 `;
 

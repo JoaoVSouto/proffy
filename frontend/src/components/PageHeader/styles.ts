@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { up } from 'styled-breakpoints';
 
 export const Header = styled.header`
@@ -39,11 +39,25 @@ export const TopBarContainer = styled.div`
   }
 `;
 
-export const HeaderContent = styled.div`
+interface IHeaderContentProps {
+  contentMarginBottom?: boolean;
+}
+
+export const HeaderContent = styled.div<IHeaderContentProps>`
   width: 90%;
   margin: 0 auto;
   position: relative;
   margin: 3.2rem auto;
+
+  ${({ contentMarginBottom }) =>
+    contentMarginBottom &&
+    css`
+      margin-bottom: 6.4rem;
+
+      ${up('tablet')} {
+        margin-bottom: 0;
+      }
+    `}
 
   strong {
     font-family: 'Archivo', sans-serif;
@@ -67,4 +81,12 @@ export const HeaderContent = styled.div`
       max-width: 350px;
     }
   }
+`;
+
+export const Description = styled.p`
+  max-width: 30rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--color-text-in-primary);
+  margin-top: 2.4rem;
 `;

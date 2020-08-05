@@ -9,7 +9,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<IProps> = ({ name, label, ...rest }) => {
   return (
-    <Container>
+    <Container className="input-block">
       <Label htmlFor={name}>{label}</Label>
       <StyledInput id={name} name={name} {...rest} />
     </Container>

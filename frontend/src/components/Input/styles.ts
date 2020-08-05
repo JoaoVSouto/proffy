@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
 
 export const Container = styled.div`
   position: relative;
@@ -27,12 +26,6 @@ export const Container = styled.div`
 
   label {
     font-size: 1.4rem;
-  }
-
-  ${up('tablet')} {
-    + div {
-      margin-top: 0;
-    }
   }
 `;
 
