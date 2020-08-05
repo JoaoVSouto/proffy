@@ -114,7 +114,11 @@ export const ButtonsContainer = styled.div`
 
     img {
       width: 4rem;
-      margin-right: 2rem;
+      margin-right: 1rem;
+
+      ${up('desktop')} {
+        margin-right: 2rem;
+      }
     }
   }
 
