@@ -42,6 +42,7 @@ export const Container = styled.article`
     padding: 0 2rem;
     font-size: 1.6rem;
     line-height: 2.8rem;
+    white-space: pre-wrap;
   }
 
   footer {
@@ -60,7 +61,7 @@ export const Container = styled.article`
       display: block;
     }
 
-    button {
+    a {
       width: 20rem;
       height: 5.6rem;
       background-color: var(--color-secundary);
@@ -71,6 +72,7 @@ export const Container = styled.article`
       font-family: 'Archivo', sans-serif;
       font-size: 1.4rem;
       font-weight: 700;
+      text-decoration: none;
 
       display: flex;
       align-items: center;
@@ -101,7 +103,7 @@ export const Container = styled.article`
         margin-left: 1.6rem;
       }
 
-      button {
+      a {
         width: 24.5rem;
         font-size: 1.6rem;
         justify-content: center;
