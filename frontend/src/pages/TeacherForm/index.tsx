@@ -194,6 +194,7 @@ const TeacherForm: React.FC = () => {
             <Input
               type="text"
               label="Whatsapp"
+              maxLength={11}
               name="whatsapp"
               value={teacherInfo.whatsapp}
               onChange={handleChange(setTeacherInfo)}
