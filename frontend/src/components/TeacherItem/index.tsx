@@ -43,10 +43,14 @@ const TeacherItem: React.FC<ITeacher> = ({
           Preço/hora
           <strong>{costFormatted}</strong>
         </p>
-        <button type="button">
+        <a
+          href={`https://wa.me/55${whatsapp}?text=Olá ${name}, tudo bem? Gostaria de falar com você sobre suas aulas de ${subject} :D`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </Container>
   );
