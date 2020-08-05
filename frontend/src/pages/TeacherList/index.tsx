@@ -5,7 +5,9 @@ import { GoSearch } from 'react-icons/go';
 import api from '../../services/api';
 
 import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
+import TeacherItem, {
+  ITeacher as ITeacherData,
+} from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 
@@ -16,14 +18,8 @@ interface HTMLFormFieldElement extends HTMLElement {
   value: string;
 }
 
-interface ITeacher {
-  avatar: string;
-  bio: string;
-  cost: number;
+interface ITeacher extends ITeacherData {
   id: number;
-  name: string;
-  subject: string;
-  whatsapp: string;
 }
 
 interface IFilterInfo {

@@ -6,7 +6,7 @@ import format from '../../utils/format';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
-interface IProps {
+export interface ITeacher {
   avatar: string;
   name: string;
   subject: string;
@@ -15,7 +15,7 @@ interface IProps {
   bio: string;
 }
 
-const TeacherItem: React.FC<IProps> = ({
+const TeacherItem: React.FC<ITeacher> = ({
   avatar,
   bio,
   cost,
