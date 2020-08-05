@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -67,6 +70,8 @@ const initialWeekDayOptions = [
 ];
 
 const TeacherForm: React.FC = () => {
+  const history = useHistory();
+
   const [teacherInfo, setTeacherInfo] = useState<ITeacherInfo>({
     ...initialTeacherInfo,
   });
@@ -128,12 +133,33 @@ const TeacherForm: React.FC = () => {
     setScheduleItems(updatedScheduleItems);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
-    console.log('teacherInfo', teacherInfo);
-    console.log('classInfo', classInfo);
-    console.log('scheduleItems', scheduleItems);
+    const { name, avatar, whatsapp, bio } = teacherInfo;
+    const { subject, cost } = classInfo;
+
+    try {
+      await api.post('classes', {
+        name,
+        avatar,
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedule: scheduleItems,
+      });
+
+      setTeacherInfo({ ...initialTeacherInfo });
+      setClassInfo({ ...initialClassInfo });
+      setScheduleItems([{ ...initialScheduleItem }]);
+
+      history.push('/');
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   return (
@@ -158,7 +184,7 @@ const TeacherForm: React.FC = () => {
             />
 
             <Input
-              type="text"
+              type="url"
               label="Avatar"
               name="avatar"
               value={teacherInfo.avatar}
