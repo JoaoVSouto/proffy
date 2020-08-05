@@ -8,6 +8,7 @@ interface IProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Array<{
     value: string;
     label: string;
+    disabled?: boolean;
   }>;
 }
 
@@ -21,13 +22,17 @@ const Select: React.FC<IProps> = ({
   return (
     <Container className="select-block">
       <Label htmlFor={name}>{label}</Label>
-      <StyledSelect defaultValue="" id={name} name={name} {...rest}>
+      <StyledSelect value="" id={name} name={name} {...rest}>
         <option value="" disabled hidden>
           {placeholder}
         </option>
 
         {options.map(option => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+          >
             {option.label}
           </option>
         ))}

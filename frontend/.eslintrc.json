@@ -36,6 +36,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
+    "react/jsx-curly-newline": "off",
     "prettier/prettier": "error",
     "import/prefer-default-export": "off",
     "import/extensions": [
