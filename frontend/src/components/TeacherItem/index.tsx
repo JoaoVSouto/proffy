@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
 
-import { Container } from './styles';
+import api from '../../services/api';
 
 import format from '../../utils/format';
+
+import { Container } from './styles';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
@@ -13,6 +15,7 @@ export interface ITeacher {
   whatsapp: string;
   cost: number;
   bio: string;
+  user_id: string;
 }
 
 const TeacherItem: React.FC<ITeacher> = ({
@@ -22,8 +25,19 @@ const TeacherItem: React.FC<ITeacher> = ({
   name,
   subject,
   whatsapp,
+  user_id,
 }) => {
   const costFormatted = useMemo(() => format.toBRLCurrency(cost), [cost]);
+
+  const createNewConnection = async (): Promise<void> => {
+    try {
+      await api.post('connections', {
+        user_id,
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
 
   return (
     <Container>
@@ -47,6 +61,7 @@ const TeacherItem: React.FC<ITeacher> = ({
           href={`https://wa.me/55${whatsapp}?text=Olá ${name}, tudo bem? Gostaria de falar com você sobre suas aulas de ${subject} :D`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={createNewConnection}
         >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato

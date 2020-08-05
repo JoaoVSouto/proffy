@@ -131,6 +131,7 @@ const TeacherList: React.FC = () => {
             name={teacher.name}
             subject={teacher.subject}
             whatsapp={teacher.whatsapp}
+            user_id={teacher.user_id}
           />
         ))}
 
