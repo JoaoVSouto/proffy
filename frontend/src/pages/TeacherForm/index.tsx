@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
-import { Container, Main, Fieldset, Footer } from './styles';
+import { Container, Main, Fieldset, ScheduleItem, Footer } from './styles';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
@@ -54,6 +54,33 @@ const TeacherForm: React.FC = () => {
           />
 
           <Input type="text" label="Custo da sua hora por aula" name="cost" />
+        </Fieldset>
+
+        <Fieldset>
+          <legend>
+            Horários disponíveis
+            <button type="button">+ Novo horário</button>
+          </legend>
+
+          <ScheduleItem>
+            <Select
+              required
+              placeholder="Selecione o dia"
+              label="Dia da semana"
+              name="week_day"
+              options={[
+                { value: '0', label: 'Domingo' },
+                { value: '1', label: 'Segunda-feira' },
+                { value: '2', label: 'Terça-feira' },
+                { value: '3', label: 'Quarta-feira' },
+                { value: '4', label: 'Quinta-feira' },
+                { value: '5', label: 'Sexta-feira' },
+                { value: '6', label: 'Sábado' },
+              ]}
+            />
+            <Input type="time" label="Das" name="from" />
+            <Input type="time" label="Até" name="to" />
+          </ScheduleItem>
         </Fieldset>
 
         <Footer>

@@ -42,6 +42,22 @@ export const Fieldset = styled.fieldset`
     justify-content: space-between;
 
     width: 100%;
+
+    button {
+      background-color: transparent;
+      border: 0;
+      color: var(--color-primary);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover,
+      &:focus {
+        color: var(--color-primary-dark);
+      }
+    }
   }
 
   + fieldset {
@@ -110,6 +126,18 @@ export const Footer = styled.footer`
     button {
       margin-top: 0;
       width: 20rem;
+    }
+  }
+`;
+
+export const ScheduleItem = styled.div`
+  ${up('tablet')} {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 1.6rem;
+
+    .input-block {
+      margin-top: 0;
     }
   }
 `;
