@@ -1,21 +1,82 @@
-import React from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
+
+import { GoSearch } from 'react-icons/go';
+
+import api from '../../services/api';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 
-import { Container, Form, Main } from './styles';
+import { Container, Form, Main, SubmitButton } from './styles';
+
+interface HTMLFormFieldElement extends HTMLElement {
+  name: string;
+  value: string;
+}
+
+interface ITeacher {
+  avatar: string;
+  bio: string;
+  cost: number;
+  id: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+
+interface IFilterInfo {
+  subject: string;
+  week_day: string;
+  time: string;
+}
+
+const initialFilterInfoData = {
+  subject: '',
+  week_day: '',
+  time: '',
+};
 
 const TeacherList: React.FC = () => {
+  const [filterInfo, setFilterInfo] = useState<IFilterInfo>({
+    ...initialFilterInfoData,
+  });
+
+  const [teachers, setTeachers] = useState<ITeacher[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLFormFieldElement>): void => {
+    const { target } = e;
+
+    setFilterInfo({ ...filterInfo, [target.name]: target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+
+    const { subject, week_day, time } = filterInfo;
+
+    try {
+      const { data } = await api.get('classes', {
+        params: { subject, week_day, time },
+      });
+
+      setTeachers(data);
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
   return (
     <Container className="container">
       <PageHeader title="Estes são os proffys disponíveis.">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Select
             required
             label="Matéria"
             name="subject"
+            value={filterInfo.subject}
+            onChange={handleChange}
             options={[
               { value: 'Artes', label: 'Artes' },
               { value: 'Biologia', label: 'Biologia' },
@@ -34,6 +95,8 @@ const TeacherList: React.FC = () => {
             required
             label="Dia da semana"
             name="week_day"
+            value={filterInfo.week_day}
+            onChange={handleChange}
             options={[
               { value: '0', label: 'Domingo' },
               { value: '1', label: 'Segunda-feira' },
@@ -45,15 +108,33 @@ const TeacherList: React.FC = () => {
             ]}
           />
 
-          <Input type="time" label="Hora" name="time" />
+          <Input
+            type="time"
+            label="Hora"
+            name="time"
+            value={filterInfo.time}
+            onChange={handleChange}
+          />
+
+          <SubmitButton type="submit">
+            <span>Pesquisar</span>
+            <GoSearch size={20} />
+          </SubmitButton>
         </Form>
       </PageHeader>
 
       <Main>
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
+        {teachers.map(teacher => (
+          <TeacherItem
+            key={teacher.id}
+            avatar={teacher.avatar}
+            bio={teacher.bio}
+            cost={teacher.cost}
+            name={teacher.name}
+            subject={teacher.subject}
+            whatsapp={teacher.whatsapp}
+          />
+        ))}
       </Main>
     </Container>
   );
