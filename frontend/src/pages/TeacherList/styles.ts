@@ -89,3 +89,9 @@ export const SubmitButton = styled.button`
     }
   }
 `;
+
+export const NotFound = styled.p`
+  text-align: center;
+  margin-top: 3.2rem;
+  font-size: 2rem;
+`;

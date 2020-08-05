@@ -9,7 +9,7 @@ import TeacherItem from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 
-import { Container, Form, Main, SubmitButton } from './styles';
+import { Container, Form, Main, SubmitButton, NotFound } from './styles';
 
 interface HTMLFormFieldElement extends HTMLElement {
   name: string;
@@ -42,8 +42,8 @@ const TeacherList: React.FC = () => {
   const [filterInfo, setFilterInfo] = useState<IFilterInfo>({
     ...initialFilterInfoData,
   });
-
   const [teachers, setTeachers] = useState<ITeacher[]>([]);
+  const [requested, setRequested] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLFormFieldElement>): void => {
     const { target } = e;
@@ -64,6 +64,8 @@ const TeacherList: React.FC = () => {
       setTeachers(data);
     } catch (err) {
       throw new Error(err);
+    } finally {
+      setRequested(true);
     }
   };
 
@@ -135,6 +137,10 @@ const TeacherList: React.FC = () => {
             whatsapp={teacher.whatsapp}
           />
         ))}
+
+        {requested && teachers.length === 0 && (
+          <NotFound>Nenhum proffy encontrado :(</NotFound>
+        )}
       </Main>
     </Container>
   );
