@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -9,7 +9,27 @@ import { Container, Main, Fieldset, ScheduleItem, Footer } from './styles';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
+interface IScheduleItem {
+  week_day: string;
+  from: string;
+  to: string;
+}
+
+const initialScheduleItem = {
+  week_day: '',
+  from: '',
+  to: '',
+};
+
 const TeacherForm: React.FC = () => {
+  const [scheduleItems, setScheduleItems] = useState<IScheduleItem[]>([
+    { ...initialScheduleItem },
+  ]);
+
+  const addNewScheduleItem = (): void => {
+    setScheduleItems([...scheduleItems, { ...initialScheduleItem }]);
+  };
+
   return (
     <Container className="container">
       <PageHeader
@@ -59,28 +79,32 @@ const TeacherForm: React.FC = () => {
         <Fieldset>
           <legend>
             Horários disponíveis
-            <button type="button">+ Novo horário</button>
+            <button type="button" onClick={addNewScheduleItem}>
+              + Novo horário
+            </button>
           </legend>
 
-          <ScheduleItem>
-            <Select
-              required
-              placeholder="Selecione o dia"
-              label="Dia da semana"
-              name="week_day"
-              options={[
-                { value: '0', label: 'Domingo' },
-                { value: '1', label: 'Segunda-feira' },
-                { value: '2', label: 'Terça-feira' },
-                { value: '3', label: 'Quarta-feira' },
-                { value: '4', label: 'Quinta-feira' },
-                { value: '5', label: 'Sexta-feira' },
-                { value: '6', label: 'Sábado' },
-              ]}
-            />
-            <Input type="time" label="Das" name="from" />
-            <Input type="time" label="Até" name="to" />
-          </ScheduleItem>
+          {scheduleItems.map(scheduleItem => (
+            <ScheduleItem key={scheduleItem.week_day}>
+              <Select
+                required
+                placeholder="Selecione o dia"
+                label="Dia da semana"
+                name="week_day"
+                options={[
+                  { value: '0', label: 'Domingo' },
+                  { value: '1', label: 'Segunda-feira' },
+                  { value: '2', label: 'Terça-feira' },
+                  { value: '3', label: 'Quarta-feira' },
+                  { value: '4', label: 'Quinta-feira' },
+                  { value: '5', label: 'Sexta-feira' },
+                  { value: '6', label: 'Sábado' },
+                ]}
+              />
+              <Input type="time" label="Das" name="from" />
+              <Input type="time" label="Até" name="to" />
+            </ScheduleItem>
+          ))}
         </Fieldset>
 
         <Footer>

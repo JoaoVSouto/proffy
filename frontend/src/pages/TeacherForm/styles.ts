@@ -131,6 +131,10 @@ export const Footer = styled.footer`
 `;
 
 export const ScheduleItem = styled.div`
+  + div {
+    margin-top: 2.4rem;
+  }
+
   ${up('tablet')} {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
