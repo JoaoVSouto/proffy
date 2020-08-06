@@ -7,7 +7,11 @@ import { Container, TopBar, Title } from './styles';
 import backIcon from '../../assets/images/icons/back.png';
 import logoImg from '../../assets/images/logo.png';
 
-const PageHeader: React.FC = () => {
+interface IProps {
+  title: string;
+}
+
+const PageHeader: React.FC<IProps> = ({ title }) => {
   const handleGoBack = (): void => {};
 
   return (
@@ -20,7 +24,7 @@ const PageHeader: React.FC = () => {
         <Image source={logoImg} resizeMode="contain" />
       </TopBar>
 
-      <Title>Proffys Disponíveis</Title>
+      <Title>{title}</Title>
     </Container>
   );
 };

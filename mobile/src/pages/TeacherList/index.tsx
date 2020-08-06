@@ -7,7 +7,7 @@ import { Container } from './styles';
 const TeacherList: React.FC = () => {
   return (
     <Container>
-      <PageHeader />
+      <PageHeader title="Proffys Disponíveis" />
     </Container>
   );
 };
