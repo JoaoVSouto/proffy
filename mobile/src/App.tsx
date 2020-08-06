@@ -11,7 +11,7 @@ import {
 } from '@expo-google-fonts/poppins';
 import React from 'react';
 
-import Landing from './pages/Landing';
+import AppStack from './routes/AppStack';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Landing />
+      <AppStack />
 
       <StatusBar style="light" />
     </>
