@@ -48,7 +48,8 @@
         "allowExpressions": true
       }
     ],
-    "camelcase": "off"
+    "camelcase": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "settings": {
     "import/resolver": {
