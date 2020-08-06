@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, TopBar, Title } from './styles';
 
@@ -12,7 +13,11 @@ interface IProps {
 }
 
 const PageHeader: React.FC<IProps> = ({ title }) => {
-  const handleGoBack = (): void => {};
+  const { navigate } = useNavigation();
+
+  const handleGoBack = (): void => {
+    navigate('Landing');
+  };
 
   return (
     <Container>
