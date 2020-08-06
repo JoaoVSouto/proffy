@@ -29,7 +29,7 @@ const App: React.FC = () => {
     <>
       <Landing />
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </>
   );
 };
