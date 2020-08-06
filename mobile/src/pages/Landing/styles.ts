@@ -30,7 +30,7 @@ export const ButtonsContainer = styled.View`
   margin-top: 40px;
 `;
 
-const Button = styled.TouchableOpacity`
+const Button = styled.TouchableOpacity.attrs({ activeOpacity: 0.7 })`
   height: 150px;
   width: 48%;
   border-radius: 8px;
