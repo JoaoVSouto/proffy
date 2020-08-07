@@ -49,7 +49,11 @@
       }
     ],
     "camelcase": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-wrap-multilines": [
+      "error",
+      { "declaration": false, "assignment": false }
+    ]
   },
   "settings": {
     "import/resolver": {

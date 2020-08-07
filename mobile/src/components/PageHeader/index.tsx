@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Image } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-import { Container, TopBar, Title } from './styles';
+import { Container, TopBar, Title, Header } from './styles';
 
 import backIcon from '../../assets/images/icons/back.png';
 import logoImg from '../../assets/images/logo.png';
 
 interface IProps {
   title: string;
+  headerRight?: ReactNode;
 }
 
-const PageHeader: React.FC<IProps> = ({ title, children }) => {
+const PageHeader: React.FC<IProps> = ({ title, children, headerRight }) => {
   const { navigate } = useNavigation();
 
   const handleGoBack = (): void => {
@@ -29,7 +30,11 @@ const PageHeader: React.FC<IProps> = ({ title, children }) => {
         <Image source={logoImg} resizeMode="contain" />
       </TopBar>
 
-      <Title>{title}</Title>
+      <Header>
+        <Title>{title}</Title>
+
+        {headerRight}
+      </Header>
 
       {children}
     </Container>

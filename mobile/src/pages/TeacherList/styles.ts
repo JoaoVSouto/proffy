@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -33,4 +34,9 @@ export const InputGroup = styled.View`
 
 export const InputBlock = styled.View`
   width: 48%;
+`;
+
+export const FilterButton = styled(BorderlessButton)`
+  padding: 5px;
+  margin-right: -5px;
 `;
