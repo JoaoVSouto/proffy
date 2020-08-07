@@ -12,7 +12,7 @@ interface IProps {
   title: string;
 }
 
-const PageHeader: React.FC<IProps> = ({ title }) => {
+const PageHeader: React.FC<IProps> = ({ title, children }) => {
   const { navigate } = useNavigation();
 
   const handleGoBack = (): void => {
@@ -30,6 +30,8 @@ const PageHeader: React.FC<IProps> = ({ title }) => {
       </TopBar>
 
       <Title>{title}</Title>
+
+      {children}
     </Container>
   );
 };
