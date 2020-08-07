@@ -17,12 +17,16 @@ import {
 const TeacherList: React.FC = () => {
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
+  const handleToggleFiltersVisible = (): void => {
+    setIsFiltersVisible(!isFiltersVisible);
+  };
+
   return (
     <Container>
       <PageHeader
         title="Proffys Disponíveis"
         headerRight={
-          <FilterButton>
+          <FilterButton onPress={handleToggleFiltersVisible}>
             <Feather name="filter" size={20} color="#fff" />
           </FilterButton>
         }
