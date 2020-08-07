@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Image } from 'react-native';
+
+import format from '../../utils/format';
 
 import {
   Container,
@@ -39,6 +41,10 @@ interface IProps {
 }
 
 const TeacherItem: React.FC<IProps> = ({ teacher }) => {
+  const costFormatted = useMemo(() => format.toBRLCurrency(teacher.cost), [
+    teacher,
+  ]);
+
   return (
     <Container>
       <Profile>
@@ -59,7 +65,7 @@ const TeacherItem: React.FC<IProps> = ({ teacher }) => {
       <Footer>
         <Price>
           Preço/hora {'   '}
-          <PriceValue>{teacher.cost}</PriceValue>
+          <PriceValue>{costFormatted}</PriceValue>
         </Price>
 
         <ButtonsContainer>

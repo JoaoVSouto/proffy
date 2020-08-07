@@ -53,7 +53,8 @@
     "react/jsx-wrap-multilines": [
       "error",
       { "declaration": false, "assignment": false }
-    ]
+    ],
+    "class-methods-use-this": "off"
   },
   "settings": {
     "import/resolver": {
