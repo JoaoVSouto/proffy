@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
@@ -80,10 +80,20 @@ const BaseButton = styled(RectButton)`
   align-items: center;
 `;
 
-export const FavoriteButton = styled(BaseButton)`
+interface IFavoriteButtonProps {
+  favorited?: boolean;
+}
+
+export const FavoriteButton = styled(BaseButton)<IFavoriteButtonProps>`
   background-color: #8257e5;
   width: 56px;
   margin-right: 8px;
+
+  ${({ favorited }) =>
+    favorited &&
+    css`
+      background-color: #e33d3d;
+    `}
 `;
 
 export const ContactButton = styled(BaseButton)`

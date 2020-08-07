@@ -18,8 +18,8 @@ import {
   ContactButtonText,
 } from './styles';
 
-import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
-// import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
+// import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
+import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
 export { TeacherItemList } from './styles';
@@ -56,8 +56,9 @@ const TeacherItem: React.FC = () => {
         </Price>
 
         <ButtonsContainer>
-          <FavoriteButton>
-            <Image source={heartOutlineIcon} />
+          <FavoriteButton favorited>
+            {/* <Image source={heartOutlineIcon} /> */}
+            <Image source={unfavoriteIcon} />
           </FavoriteButton>
 
           <ContactButton>
