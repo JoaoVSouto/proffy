@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+
+import BaseButton from '../BaseButton';
 
 export const Container = styled.View`
   background-color: #fff;
@@ -71,13 +72,6 @@ export const PriceValue = styled.Text`
 export const ButtonsContainer = styled.View`
   flex-direction: row;
   margin-top: 16px;
-`;
-
-const BaseButton = styled(RectButton)`
-  height: 56px;
-  border-radius: 8px;
-  justify-content: center;
-  align-items: center;
 `;
 
 interface IFavoriteButtonProps {
