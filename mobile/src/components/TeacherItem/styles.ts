@@ -115,5 +115,5 @@ export const TeacherItemList = styled.ScrollView.attrs({
     paddingBottom: 8,
   },
 })`
-  margin-top: -60px;
+  margin-top: -40px;
 `;
