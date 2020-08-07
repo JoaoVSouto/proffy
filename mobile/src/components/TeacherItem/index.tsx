@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Image } from 'react-native';
+import { Image, Linking } from 'react-native';
 
 import format from '../../utils/format';
 
@@ -45,6 +45,12 @@ const TeacherItem: React.FC<IProps> = ({ teacher }) => {
     teacher,
   ]);
 
+  const handleLinkToWhatsapp = (): void => {
+    Linking.openURL(
+      `whatsapp://send?phone=+55${teacher.whatsapp}&text=Olá ${teacher.name}, tudo bem? Gostaria de falar com você sobre suas aulas de ${teacher.subject} :D`
+    );
+  };
+
   return (
     <Container>
       <Profile>
@@ -74,7 +80,7 @@ const TeacherItem: React.FC<IProps> = ({ teacher }) => {
             <Image source={unfavoriteIcon} />
           </FavoriteButton>
 
-          <ContactButton>
+          <ContactButton onPress={handleLinkToWhatsapp}>
             <Image source={whatsappIcon} />
             <ContactButtonText>Entrar em contato</ContactButtonText>
           </ContactButton>
