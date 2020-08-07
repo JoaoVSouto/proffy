@@ -12,6 +12,8 @@ import {
   InputGroup,
   InputBlock,
   FilterButton,
+  SubmitButton,
+  SubmitButtonText,
 } from './styles';
 
 const TeacherList: React.FC = () => {
@@ -47,6 +49,10 @@ const TeacherList: React.FC = () => {
                 <Input placeholder="Selecione" />
               </InputBlock>
             </InputGroup>
+
+            <SubmitButton>
+              <SubmitButtonText>Filtrar</SubmitButtonText>
+            </SubmitButton>
           </SearchForm>
         )}
       </PageHeader>

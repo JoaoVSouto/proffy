@@ -1,13 +1,15 @@
 import styled from 'styled-components/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
+import BaseButton from '../../components/BaseButton';
+
 export const Container = styled.View`
   flex: 1;
   background-color: #f0f0f7;
 `;
 
 export const SearchForm = styled.View`
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 `;
 
 export const Label = styled.Text`
@@ -39,4 +41,14 @@ export const InputBlock = styled.View`
 export const FilterButton = styled(BorderlessButton)`
   padding: 5px;
   margin-right: -5px;
+`;
+
+export const SubmitButton = styled(BaseButton)`
+  background-color: #04d361;
+`;
+
+export const SubmitButtonText = styled.Text`
+  color: #fff;
+  font-family: 'Archivo_700Bold';
+  font-size: 16px;
 `;
