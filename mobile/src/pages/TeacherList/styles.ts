@@ -52,3 +52,10 @@ export const SubmitButtonText = styled.Text`
   font-family: 'Archivo_700Bold';
   font-size: 16px;
 `;
+
+export const NotFound = styled.Text`
+  color: #6a6180;
+  margin-top: 32px;
+  font-size: 16px;
+  text-align: center;
+`;

@@ -19,6 +19,7 @@ import {
   FilterButton,
   SubmitButton,
   SubmitButtonText,
+  NotFound,
 } from './styles';
 
 interface IFilters {
@@ -41,6 +42,7 @@ const TeacherList: React.FC = () => {
   const [filters, setFilters] = useState<IFilters>(initialFilters);
   const [teachers, setTeachers] = useState<ITeacher[]>([]);
   const [isFiltersVisible, setIsFiltersVisible] = useState(true);
+  const [wasRequested, setWasRequested] = useState(false);
 
   const handleToggleFiltersVisible = (): void => {
     setIsFiltersVisible(!isFiltersVisible);
@@ -59,14 +61,18 @@ const TeacherList: React.FC = () => {
     const { subject, week_day, time } = filters;
 
     try {
+      setIsFiltersVisible(false);
+
       const { data } = await api.get('classes', {
         params: { subject, week_day, time },
       });
 
       setTeachers(data);
-      setIsFiltersVisible(false);
+      setFilters(initialFilters);
     } catch (err) {
       throw new Error(err);
+    } finally {
+      setWasRequested(true);
     }
   };
 
@@ -115,6 +121,10 @@ const TeacherList: React.FC = () => {
           </SearchForm>
         )}
       </PageHeader>
+
+      {wasRequested && teachers.length === 0 && (
+        <NotFound>Nenhum proffy encontrado :(</NotFound>
+      )}
 
       <TeacherItemList>
         {teachers.map(teacher => (
