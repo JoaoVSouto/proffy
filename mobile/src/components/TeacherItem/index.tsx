@@ -24,35 +24,42 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
 export { TeacherItemList } from './styles';
 
-const TeacherItem: React.FC = () => {
+export interface ITeacher {
+  avatar: string;
+  name: string;
+  subject: string;
+  whatsapp: string;
+  cost: number;
+  bio: string;
+  user_id: string;
+}
+
+interface IProps {
+  teacher: ITeacher;
+}
+
+const TeacherItem: React.FC<IProps> = ({ teacher }) => {
   return (
     <Container>
       <Profile>
         <Avatar
           source={{
-            uri: 'https://avatars1.githubusercontent.com/u/42191629?v=4',
+            uri: teacher.avatar,
           }}
         />
 
         <ProfileInfo>
-          <Name>João Vítor</Name>
-          <Subject>Matemática</Subject>
+          <Name>{teacher.name}</Name>
+          <Subject>{teacher.subject}</Subject>
         </ProfileInfo>
       </Profile>
 
-      <Bio>
-        Entusiasta das melhores tecnologias de química avançada.
-        {'\n'}
-        {'\n'}
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das
-        pessoas através de experiências. Mais de 200.000 pessoas já passaram por
-        uma das minhas explosões.
-      </Bio>
+      <Bio>{teacher.bio}</Bio>
 
       <Footer>
         <Price>
           Preço/hora {'   '}
-          <PriceValue>R$ 20,00</PriceValue>
+          <PriceValue>{teacher.cost}</PriceValue>
         </Price>
 
         <ButtonsContainer>

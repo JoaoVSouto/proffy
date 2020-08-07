@@ -25,6 +25,7 @@ export const Avatar = styled.Image`
 
 export const ProfileInfo = styled.View`
   margin-left: 16px;
+  flex-shrink: 1;
 `;
 
 export const Name = styled.Text`
