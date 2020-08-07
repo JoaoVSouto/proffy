@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
+import TeacherItem, { TeacherItemList } from '../../components/TeacherItem';
 
 import { Container } from './styles';
 
@@ -10,7 +10,9 @@ const TeacherList: React.FC = () => {
     <Container>
       <PageHeader title="Proffys Disponíveis" />
 
-      <TeacherItem />
+      <TeacherItemList>
+        <TeacherItem />
+      </TeacherItemList>
     </Container>
   );
 };

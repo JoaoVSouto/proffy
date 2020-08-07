@@ -22,6 +22,8 @@ import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
 // import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
+export { TeacherItemList } from './styles';
+
 const TeacherItem: React.FC = () => {
   return (
     <Container>

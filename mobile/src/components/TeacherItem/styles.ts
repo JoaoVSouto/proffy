@@ -98,3 +98,12 @@ export const ContactButtonText = styled.Text`
   font-size: 16px;
   margin-left: 16px;
 `;
+
+export const TeacherItemList = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+  },
+})`
+  margin-top: -60px;
+`;
