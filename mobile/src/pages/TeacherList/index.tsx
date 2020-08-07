@@ -64,6 +64,7 @@ const TeacherList: React.FC = () => {
       });
 
       setTeachers(data);
+      setIsFiltersVisible(false);
     } catch (err) {
       throw new Error(err);
     }
