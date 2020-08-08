@@ -155,6 +155,7 @@ const TeacherList: React.FC = () => {
                 mode="time"
                 display="default"
                 is24Hour
+                textColor="#fff"
               />
             )}
 
