@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react';
 import { Image, Linking } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import api from '../../services/api';
+
 import format from '../../utils/format';
 
 import {
@@ -51,6 +53,10 @@ const TeacherItem: React.FC<IProps> = ({ teacher, favorited }) => {
   ]);
 
   const handleLinkToWhatsapp = (): void => {
+    api.post('connections', {
+      user_id: teacher.id,
+    });
+
     Linking.openURL(
       `whatsapp://send?phone=+55${teacher.whatsapp}&text=Olá ${teacher.name}, tudo bem? Gostaria de falar com você sobre suas aulas de ${teacher.subject} :D`
     );
