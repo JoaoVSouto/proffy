@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import { Picker } from '@react-native-community/picker';
 import { Feather } from '@expo/vector-icons';
 
 import PageHeader from '../../components/PageHeader';
@@ -24,16 +25,15 @@ import {
   NotFound,
   TimeButton,
   TimeButtonText,
+  DayPickerContainer,
 } from './styles';
 
 interface IFilters {
   subject: string;
-  week_day: string;
 }
 
 const initialFilters: IFilters = {
   subject: '',
-  week_day: '',
 };
 
 const TeacherList: React.FC = () => {
@@ -42,6 +42,7 @@ const TeacherList: React.FC = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [timeField, setTimeField] = useState('');
   const [time, setTime] = useState(new Date());
+  const [day, setDay] = useState('0');
   const [isFiltersVisible, setIsFiltersVisible] = useState(true);
   const [wasRequested, setWasRequested] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -73,14 +74,14 @@ const TeacherList: React.FC = () => {
   };
 
   const handleFiltersSubmit = async (): Promise<void> => {
-    const { subject, week_day } = filters;
+    const { subject } = filters;
 
     try {
       setIsFiltersVisible(false);
 
       await loadFavorites();
       const { data } = await api.get('classes', {
-        params: { subject, week_day, time: timeField },
+        params: { subject, week_day: day, time: timeField },
       });
 
       setTeachers(data);
@@ -130,11 +131,48 @@ const TeacherList: React.FC = () => {
             <InputGroup>
               <InputBlock>
                 <Label>Dia da semana</Label>
-                <Input
-                  placeholder="Selecione"
-                  value={filters.week_day}
-                  onChangeText={handleInputChange('week_day')}
-                />
+                <DayPickerContainer>
+                  <Picker
+                    selectedValue={day}
+                    onValueChange={itemValue => setDay(itemValue as string)}
+                    style={{
+                      transform: [
+                        { scaleX: 0.85 },
+                        { scaleY: 0.85 },
+                        { translateX: -5 },
+                      ],
+                      marginRight: -17,
+                    }}
+                  >
+                    <Picker.Item label="Domingo" value="0" color="#6a6180" />
+                    <Picker.Item
+                      label="Segunda-feira"
+                      value="1"
+                      color="#6a6180"
+                    />
+                    <Picker.Item
+                      label="Terça-feira"
+                      value="2"
+                      color="#6a6180"
+                    />
+                    <Picker.Item
+                      label="Quarta-feira"
+                      value="3"
+                      color="#6a6180"
+                    />
+                    <Picker.Item
+                      label="Quinta-feira"
+                      value="4"
+                      color="#6a6180"
+                    />
+                    <Picker.Item
+                      label="Sexta-feira"
+                      value="5"
+                      color="#6a6180"
+                    />
+                    <Picker.Item label="Sábado" value="6" color="#6a6180" />
+                  </Picker>
+                </DayPickerContainer>
               </InputBlock>
 
               <InputBlock>

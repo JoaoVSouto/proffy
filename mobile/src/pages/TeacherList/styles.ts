@@ -79,3 +79,8 @@ export const NotFound = styled.Text`
   font-size: 16px;
   text-align: center;
 `;
+
+export const DayPickerContainer = styled.View`
+  ${BaseInput}
+  padding: 0;
+`;
