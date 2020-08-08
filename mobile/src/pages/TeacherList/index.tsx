@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Feather } from '@expo/vector-icons';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, {
   TeacherItemList,
-  ITeacher as ITeacherData,
+  ITeacher,
 } from '../../components/TeacherItem';
 
 import api from '../../services/api';
@@ -28,10 +29,6 @@ interface IFilters {
   time: string;
 }
 
-interface ITeacher extends ITeacherData {
-  id: number;
-}
-
 const initialFilters: IFilters = {
   subject: '',
   week_day: '',
@@ -41,8 +38,22 @@ const initialFilters: IFilters = {
 const TeacherList: React.FC = () => {
   const [filters, setFilters] = useState<IFilters>(initialFilters);
   const [teachers, setTeachers] = useState<ITeacher[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
   const [isFiltersVisible, setIsFiltersVisible] = useState(true);
   const [wasRequested, setWasRequested] = useState(false);
+
+  const loadFavorites = async (): Promise<void> => {
+    const favoritesData = await AsyncStorage.getItem('favorites');
+
+    if (favoritesData) {
+      const favoritedTeachers = JSON.parse(favoritesData);
+      const favoritedTeachersIds = favoritedTeachers.map(
+        (teacher: ITeacher) => teacher.id
+      );
+
+      setFavorites(favoritedTeachersIds);
+    }
+  };
 
   const handleToggleFiltersVisible = (): void => {
     setIsFiltersVisible(!isFiltersVisible);
@@ -63,6 +74,7 @@ const TeacherList: React.FC = () => {
     try {
       setIsFiltersVisible(false);
 
+      await loadFavorites();
       const { data } = await api.get('classes', {
         params: { subject, week_day, time },
       });
@@ -128,7 +140,11 @@ const TeacherList: React.FC = () => {
 
       <TeacherItemList>
         {teachers.map(teacher => (
-          <TeacherItem key={teacher.id} teacher={teacher} />
+          <TeacherItem
+            key={teacher.id}
+            teacher={teacher}
+            favorited={favorites.includes(teacher.id)}
+          />
         ))}
       </TeacherItemList>
     </Container>
