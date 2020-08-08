@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
 
 import PageHeader from '../../components/PageHeader';
@@ -21,26 +22,29 @@ import {
   SubmitButton,
   SubmitButtonText,
   NotFound,
+  TimeButton,
+  TimeButtonText,
 } from './styles';
 
 interface IFilters {
   subject: string;
   week_day: string;
-  time: string;
 }
 
 const initialFilters: IFilters = {
   subject: '',
   week_day: '',
-  time: '',
 };
 
 const TeacherList: React.FC = () => {
   const [filters, setFilters] = useState<IFilters>(initialFilters);
   const [teachers, setTeachers] = useState<ITeacher[]>([]);
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [timeField, setTimeField] = useState('');
+  const [time, setTime] = useState(new Date());
   const [isFiltersVisible, setIsFiltersVisible] = useState(true);
   const [wasRequested, setWasRequested] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
 
   const loadFavorites = async (): Promise<void> => {
     const favoritesData = await AsyncStorage.getItem('favorites');
@@ -69,22 +73,38 @@ const TeacherList: React.FC = () => {
   };
 
   const handleFiltersSubmit = async (): Promise<void> => {
-    const { subject, week_day, time } = filters;
+    const { subject, week_day } = filters;
 
     try {
       setIsFiltersVisible(false);
 
       await loadFavorites();
       const { data } = await api.get('classes', {
-        params: { subject, week_day, time },
+        params: { subject, week_day, time: timeField },
       });
 
       setTeachers(data);
-      setFilters(initialFilters);
     } catch (err) {
       throw new Error(err);
     } finally {
       setWasRequested(true);
+    }
+  };
+
+  const handleTimeChange = (event: Event, selectedDate?: Date): void => {
+    setShowTimePicker(false);
+
+    if (selectedDate) {
+      setTime(selectedDate);
+
+      const hours = selectedDate.getHours();
+      const minutes = selectedDate.getMinutes();
+
+      const hoursPadded = String(hours).padStart(2, '0');
+      const minutesPadded = String(minutes).padStart(2, '0');
+
+      const timeMounted = `${hoursPadded}:${minutesPadded}`;
+      setTimeField(timeMounted);
     }
   };
 
@@ -119,13 +139,24 @@ const TeacherList: React.FC = () => {
 
               <InputBlock>
                 <Label>Horário</Label>
-                <Input
-                  placeholder="Selecione"
-                  value={filters.time}
-                  onChangeText={handleInputChange('time')}
-                />
+                <TimeButton onPress={() => setShowTimePicker(true)}>
+                  <TimeButtonText placeholder={!timeField}>
+                    {timeField || 'Selecione'}
+                  </TimeButtonText>
+                  <Feather name="clock" size={20} color="#9c98a6" />
+                </TimeButton>
               </InputBlock>
             </InputGroup>
+
+            {showTimePicker && (
+              <DateTimePicker
+                value={time}
+                onChange={handleTimeChange}
+                mode="time"
+                display="default"
+                is24Hour
+              />
+            )}
 
             <SubmitButton onPress={handleFiltersSubmit}>
               <SubmitButtonText>Filtrar</SubmitButtonText>

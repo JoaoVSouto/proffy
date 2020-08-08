@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import styled, { css } from 'styled-components/native';
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 
 import BaseButton from '../../components/BaseButton';
 
@@ -17,16 +17,36 @@ export const Label = styled.Text`
   font-family: 'Poppins_400Regular';
 `;
 
-export const Input = styled.TextInput.attrs({
-  placeholderTextColor: '#c1bccc',
-  selectionColor: '#af8cff',
-})`
+const BaseInput = css`
   height: 54px;
   background-color: #fff;
   border-radius: 8px;
   justify-content: center;
   padding: 0 16px;
   margin: 4px 0 16px;
+`;
+
+export const Input = styled.TextInput.attrs({
+  placeholderTextColor: '#c1bccc',
+  selectionColor: '#af8cff',
+})`
+  ${BaseInput}
+  color: #6a6180;
+`;
+
+export const TimeButton = styled(RectButton)`
+  ${BaseInput}
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+interface ITimeButtonText {
+  placeholder?: boolean;
+}
+
+export const TimeButtonText = styled.Text<ITimeButtonText>`
+  color: ${({ placeholder }) => (placeholder ? '#c1bccc' : '#6a6180')};
 `;
 
 export const InputGroup = styled.View`
