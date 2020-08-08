@@ -71,13 +71,13 @@ const TeacherItem: React.FC<IProps> = ({ teacher, favorited }) => {
       favoritesArray = JSON.parse(favorites);
     }
 
-    if (isFavorited) {
-      const teacherIndex = favoritesArray.findIndex(
-        (tchr: ITeacher) => tchr.id === teacher.id
-      );
+    const teacherIndex = favoritesArray.findIndex(
+      (tchr: ITeacher) => tchr.id === teacher.id
+    );
 
+    if (isFavorited) {
       favoritesArray.splice(teacherIndex, 1);
-    } else {
+    } else if (teacherIndex === -1) {
       favoritesArray.push(teacher);
     }
 
